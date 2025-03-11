@@ -225,8 +225,8 @@ def workflow(bbox: list, writer=print):
     writer(f'Dropping {len(drop_idx)} basins which no longer meet dNBR threshold...')
     current_run_basins.drop(drop_idx,axis=0,inplace=True)
     
-    current_run_basins.to_file(f'{home_path}/ref_data/BasinsToRun.geojson',header=True,index=True)
-    current_run_basins.to_file(f'{home_path}/ref_data/BasinsToRun_BACKUP.geojson',header=True,index=True)
+    current_run_basins.to_file(f'{home_path}/ref_data/BasinsToRun.geojson', index=True)
+    current_run_basins.to_file(f'{home_path}/ref_data/BasinsToRun_BACKUP.geojson', index=True)
     writer('all basins run\n')
 
     writer('Removing temp files...')

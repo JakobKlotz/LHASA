@@ -231,7 +231,7 @@ def run_basins(basins, home_path, writer=print, creds=None, mask=True,
             basins_zonal['LastRunDate'] = pd.to_datetime(date.today()).strftime('%Y-%m-%d')
             # basins_zonal['dNBRCalcDiff'] = ((pd.to_datetime(date.today()) - pd.to_datetime(basins_zonal['dnbrCalcDate']))
             #                                  / np.timedelta64(1,'M'))
-            basins_zonal.to_file(f'{os.path.join(home_path,"recover_files")}/{_id}_run.geojson',header=True,index=True)
+            basins_zonal.to_file(f'{os.path.join(home_path,"recover_files")}/{_id}_run.geojson', index=True)
             basins_all.append(basins_zonal) # add to growing list
             
             writer(f'{_id} sucessfully run and removed from list.\n')
