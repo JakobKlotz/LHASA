@@ -170,7 +170,7 @@ def run_basins(basins, home_path, writer=print, creds=None, mask=True,
         today = pd.Timestamp.now()
         
         # calc post-fire offset
-        timedelta = np.ceil((today - pd.to_datetime(end)) / np.timedelta64(1,'M')) # round up to next month!
+        timedelta = np.ceil((today - pd.to_datetime(end)).days / 30.44)  # round up to next month!
 
         # get original pre-fire offset
         pre_offset = float(basin['PreOffset'].iloc[0])

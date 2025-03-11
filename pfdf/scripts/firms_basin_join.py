@@ -70,7 +70,7 @@ def join(firms_path, sheds, date_range=65, count_thresh=250, pre_offset=1, bbox=
     last_detection = joined_gdf_copy.groupby(joined_gdf_copy.index)['acq_date'].max().rename('FireEnd') # get last fire observation
 
     return_df = return_df.join(last_detection, on='HYBAS_ID') # join!
-    return_df['Duration'] = (return_df['FireEnd'] - return_df['FireStart']) / np.timedelta64(1,'M')
+    return_df['Duration'] = (return_df['FireEnd'] - return_df['FireStart']).days / 30.44 # approximation for months
 
     today = pd.to_datetime(date.today())
     return_df['DaysFromLastDetection'] = (today-return_df['FireEnd']) / np.timedelta64(1,'D')
