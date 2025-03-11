@@ -354,5 +354,5 @@ if __name__ == "__main__":
         output_path = home_path
     
     directory_setup(firms_path, output_path, home_path)
-    bbox = [args.west, args.south, args.east, args.north]
+    bbox = (args.west, args.south, args.east, args.north)
     workflow(bbox)
