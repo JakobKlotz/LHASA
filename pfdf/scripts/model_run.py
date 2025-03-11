@@ -12,9 +12,9 @@ import geopandas as gpd
 import pandas as pd
 from datetime import date
 import numpy as np
-from fiona.errors import DriverError
 import xgboost as xgb
 import xarray as xr
+from pyogrio.errors import DataSourceError
 
 
 def directory_setup(archive_path, model_output_path, home_path):
@@ -121,8 +121,9 @@ def workflow(bbox: list, writer=print):
         
     # also get most recent set of catchments used for model runs
     try: 
-        current_run_basins = gpd.read_file(f'{home_path}/ref_data/BasinsToRun.geojson')
-    except (FileNotFoundError, DriverError): 
+        # raises a pyogrio.errors.DataSourceError, if file does not exist
+        current_run_basins = gpd.read_file(f'{home_path}/ref_data/BasinsToRun.geojson')  
+    except DataSourceError: 
         current_run_basins = []
     
     if len(current_run_basins): # start working with the current file which houses all data for model input
